@@ -3,24 +3,25 @@ import {
   WalletDisconnectButton,
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
+import Sidebar from "../components/Sidebar";
+import NavBar from "../components/NavBar/index";
+import MainContainer from "../components/MainContainer/index";
+
+const navItems = ["My Page", "Trade", "Borrow"];
 
 function Dashboard() {
+  const [tab, selectedTab] = useState("My Page");
   return (
     <div className="h-screen bg-appBlack">
       <div className="grid grid-cols-12">
-        <div className="col-span-3 text-white py-4 bg-slate-500">Pluto</div>
-        <div className="col-span-9 text-white">
-          <div className="flex flex-row justify-end py-4 bg-slate-400 items-center">
-            <div className="mx-2">
-              {" "}
-              <WalletMultiButton />
-            </div>
-          </div>
+        <div className="col-span-2 text-white py-4  mx-4">
+          <img src="/pluto.svg" alt="" className="h-14" />
         </div>
+        <NavBar />
       </div>
       <div className="grid grid-cols-12">
-        <div className="col-span-3 text-white bg-red-400 h-screen">SideBar</div>
-        <div className="col-span-9 text-white h-screen">Main Content</div>
+        <Sidebar handleContainer={selectedTab} />
+        <MainContainer tabItems={tab} />
       </div>
     </div>
   );
